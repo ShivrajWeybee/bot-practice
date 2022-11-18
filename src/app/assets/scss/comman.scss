@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300&display=swap');
+
+$cta-color: aliceblue;
+
+$primary-font: 'Heebo';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cta-btn {
+    padding: 10px;
+    margin: 10px;
+    background-color: transparent;
+    color: $cta-color;
+    font-size: 18px;
+    font-family: $primary-font;
+    font-weight: 700;
+    border: 1px solid $cta-color;
+    outline: none;
+    border-radius: 5px;
+    transition: 0.14s ease-in-out;
+
+    &:hover {
+        background-color: $cta-color;
+        color: black;
+        border: 1px solid transparent;
+    }
+}

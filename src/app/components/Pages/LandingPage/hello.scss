@@ -1,0 +1,12 @@
+.landing-page {
+    width: 100%;
+    .landing-wrapper {
+        width: 100%;
+        min-height: 100vh;
+        max-height: 100vh;
+        background-color: #23262b;
+        color: aliceblue;
+        font-family: 'Heebo', sans-serif;
+        flex-direction: column;
+    }
+}

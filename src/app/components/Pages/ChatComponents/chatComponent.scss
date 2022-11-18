@@ -1,0 +1,55 @@
+// Message in Chat
+.message-wrapper {
+    margin: 5px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    transition: 0.14s ease-in-out;
+
+    .bot-message, .user-message {
+        div {
+            border-radius: 20px;
+            display: inline-block;
+            padding: 8px 15px;
+        }
+    }
+
+    .bot-message {
+        div {
+            background-color: #e4e5e9;
+        }
+    }
+
+    .user-message {
+        text-align: right;
+        div {
+            background-color: #b1b1ec;
+        }
+    }
+
+    &:hover {
+        border: 1px solid #b3b3b3;
+    }
+}
+
+// Chat Component Button
+.chat-button {
+    button {
+        text-transform: capitalize;
+        width: 100px;
+        height: 30px;
+        outline: none;
+        border-radius: 5px;
+        background-color: transparent;
+        border: 1px solid black;
+        font-family: 'Heebo', sans-serif;
+        font-weight: 700;
+        margin: 5px 0;
+        transition: 0.14s ease-in-out;
+
+        &:hover {
+            background-color: rgba(128, 128, 128, 0.164);
+        }
+    }
+}

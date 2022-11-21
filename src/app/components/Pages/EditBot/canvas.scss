@@ -33,8 +33,19 @@
 }
 
 .customize-mess-container {
+    .custom-options {
+        justify-content: flex-start;
+        gap: 10px;
+
+        .add-option {
+            padding: 10px;
+            font-size: 18px;
+            border-radius: 5px;
+            border: 1px solid black;
+        }
+    }
     .custom-mess-input {
-        width: 100%;
+        width: 90%;
         font-family: 'Heebo', sans-serif;
         font-weight: 700;
         font-size: 18px;

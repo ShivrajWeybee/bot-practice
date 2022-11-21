@@ -21,11 +21,11 @@ export interface EditFlowProps {
     setCompoId: any
 }
 
-const EditFlow: React.FC <EditFlowProps> = (props: any) => {
+const EditFlow: React.FC<EditFlowProps> = (props: any) => {
 
-    const handleClick = (chat:any) => {
+    const handleClick = (chat: any) => {
         props.setIsCustom(true);
-        props.setTheInputValue(chat.message);
+        props.setTheInputValue(chat.defaultQuestion);
         props.setCompoId(chat._id);
     }
 
@@ -34,12 +34,11 @@ const EditFlow: React.FC <EditFlowProps> = (props: any) => {
             <h2 className="canvas-heading">Edit Chat Flow</h2>
             {
                 props.loading ? "Loading..." :
-                    props.chatFlow?.map((chat:any, index:number) => (
+                    props.chatFlow?.map((chat: any, index: number) => (
                         <div
                             key={index}
                             onClick={() => handleClick(chat)}
                         >
-                            {/* <div>{chat.message}</div> */}
                             <MessageInChat botMessage={chat} />
                         </div>
                     ))
@@ -48,16 +47,16 @@ const EditFlow: React.FC <EditFlowProps> = (props: any) => {
     )
 }
 
-const mapStateToProps = (state:any) => {
+const mapStateToProps = (state: any) => {
     return {
         loading: state.ChatComponentReducer.loading,
         chatFlow: state.chatFlowReducer.chatFlow,
     }
 }
 
-const mapDispatchToProps = (dispatch:any) => {
+const mapDispatchToProps = (dispatch: any) => {
     return {
-        setTheInputValue: (input_value:any) => dispatch(setTheInputValue(input_value))
+        setTheInputValue: (input_value: any) => dispatch(setTheInputValue(input_value))
     }
 }
 

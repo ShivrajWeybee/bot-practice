@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux';
 import { editChatMessage, setTheInputValue } from '../../../reducers/EditFlow/actions';
 import Dropdown from '../../CommonComponents/Dropdown';
@@ -24,9 +24,16 @@ export interface CustomizeMessageProps {
 
 const CustomizeMessage: React.FC<CustomizeMessageProps> = ({ isCustom, inputValue, chatFlow, setPlaceholders, compoId, editMessage }) => {
 
+    const [singleChoiceOption, setSingleChoiceOption] = useState([]);
+    const [target_ID, setTarget_ID] = useState(0);
+
     const handleChangeSubmit = (e: any) => {
         if (e.key !== "Enter") return;
-        editMessage(compoId, inputValue, 'message')
+        editMessage(compoId, inputValue, 'defaultQuestion')
+    }
+
+    const handleAddOption = () => {
+        console.log("hello..")
     }
 
     return (
@@ -46,35 +53,39 @@ const CustomizeMessage: React.FC<CustomizeMessageProps> = ({ isCustom, inputValu
                         />
                     </div>
 
-                    {/* Create a saperate component for dropdown */}
-                    {
-
-                    }
                     <div className="custom-sub-div">
                         <label className="custom-label">Go to next message</label>
-                        {/* <select className="next-question-dropdown">
-                            {
-                                chatFlow.filter((chat:any) => chat._id !== compoId).map((chatCompo:any, index:number) => (
-                                    <option key={index} value={chatCompo._id}>{chatCompo.message}</option>
-                                ))
-                            }
-                                <option>End chat</option>
-                            </select> */}
-                        <Dropdown options={chatFlow.filter((chat: any) => chat._id !== compoId)} endChat={true} compoId={compoId} />
+                        <Dropdown
+                            options={chatFlow.filter((chat: any) => chat._id !== compoId)}
+                            endChat={true} compoId={compoId}
+                            target_ID={chatFlow.find((chat: any) => chat._id === compoId)}
+                            setTarget_ID={setTarget_ID} />
                     </div>
 
                     {/* Check if message type is 'Single Choice Question', then Display otherwise Not */}
                     {
                         chatFlow.find((chat: any) => chat._id === compoId)?.messageType == 'single choice' &&
                         <div>
-                            <input
-                                className="custom-mess-input option-wrapper"
-                                type="text"
-                                value="Option 1"
-                                onChange={(e) => setPlaceholders(e.target.value)}
-                                onKeyDown={(e) => handleChangeSubmit(e)}
-                            />
-                            <Dropdown options={chatFlow.filter((chat: any) => chat._id !== compoId)} endChat={true} compoId={compoId} />
+                            <div className="custom-options flex">
+                                <input
+                                    className="custom-mess-input option-wrapper"
+                                    type="text"
+                                    value="Option 1"
+                                    onChange={(e) => setPlaceholders(e.target.value)}
+                                    onKeyDown={(e) => handleChangeSubmit(e)}
+                                />
+                                <div>
+                                    <button
+                                        className="add-option"
+                                        onClick={() => handleAddOption()}>+</button>
+                                </div>
+                            </div>
+                            <Dropdown
+                                options={chatFlow.filter((chat: any) => chat._id !== compoId)}
+                                endChat={true}
+                                compoId={compoId}
+                                target_ID={chatFlow.find((chat: any) => chat._id === compoId)}
+                                setTarget_ID={setTarget_ID} />
                         </div>
                     }
                 </div>

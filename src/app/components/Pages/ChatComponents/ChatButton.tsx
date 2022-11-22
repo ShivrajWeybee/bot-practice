@@ -4,7 +4,7 @@ export interface ChatButtonProps {
     content: any,
 }
 
-const ChatButton: React.FC <ChatButtonProps> = ({content}) => {
+const ChatButton: React.FC<ChatButtonProps> = ({ content }) => {
     return (
         <div className="chat-button">
             <button>{content}</button>

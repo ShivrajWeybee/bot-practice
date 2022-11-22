@@ -8,8 +8,8 @@ interface addToChatFlow {
     id: number,
     inputText: string,
     label: string,
-    message: string,
-    messageType: string,
+    defaultQuestion: string,
+    questionType: string,
     targetId: number
 }
 
@@ -58,13 +58,13 @@ const CustomizeMessage: React.FC<CustomizeMessageProps> = ({ isCustom, inputValu
                         <Dropdown
                             options={chatFlow.filter((chat: any) => chat._id !== compoId)}
                             endChat={true} compoId={compoId}
-                            target_ID={chatFlow.find((chat: any) => chat._id === compoId)}
+                            target_ID={chatFlow.find((chat: any) => chat._id === compoId)?.targetId}
                             setTarget_ID={setTarget_ID} />
                     </div>
 
                     {/* Check if message type is 'Single Choice Question', then Display otherwise Not */}
                     {
-                        chatFlow.find((chat: any) => chat._id === compoId)?.messageType == 'single choice' &&
+                        chatFlow.find((chat: any) => chat._id === compoId)?.questionType == 'single choice' &&
                         <div>
                             <div className="custom-options flex">
                                 <input
@@ -84,7 +84,7 @@ const CustomizeMessage: React.FC<CustomizeMessageProps> = ({ isCustom, inputValu
                                 options={chatFlow.filter((chat: any) => chat._id !== compoId)}
                                 endChat={true}
                                 compoId={compoId}
-                                target_ID={chatFlow.find((chat: any) => chat._id === compoId)}
+                                target_ID={chatFlow.find((chat: any) => chat._id === compoId)?.targetId}
                                 setTarget_ID={setTarget_ID} />
                         </div>
                     }

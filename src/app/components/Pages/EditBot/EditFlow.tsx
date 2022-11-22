@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux';
-import { setTheInputValue } from '../../../reducers/EditFlow/actions';
+import { fetchChatFlow, setTheInputValue } from '../../../reducers/EditFlow/actions';
+// import { fetchChatFlow, setTheInputValue } from '../../../reducers/EditFlow/actions';
 import MessageInChat from '../ChatComponents/MessageInChat'
 
 interface addToChatFlow {
@@ -18,10 +19,15 @@ export interface EditFlowProps {
     chatFlow: addToChatFlow[],
     setIsCustom: any,
     setTheInputValue: Function,
-    setCompoId: any
+    setCompoId: any,
+    getChatFlow: any
 }
 
 const EditFlow: React.FC<EditFlowProps> = (props: any) => {
+
+    useEffect(() => {
+        props.getChatFlow()
+    }, [])
 
     const handleClick = (chat: any) => {
         props.setIsCustom(true);
@@ -56,7 +62,8 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        setTheInputValue: (input_value: any) => dispatch(setTheInputValue(input_value))
+        setTheInputValue: (input_value: any) => dispatch(setTheInputValue(input_value)),
+        getChatFlow: () => dispatch(fetchChatFlow())
     }
 }
 

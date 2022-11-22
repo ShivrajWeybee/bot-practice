@@ -4,9 +4,12 @@ import {
     FETCH_CHAT_COMPONENT_REQUEST,
     ADD_CHAT_FLOW,
     SET_INPUT_VALUE,
-    EDIT_CHAT_MESSAGE
-} from "../actionTypes";
-import { GetChatComponents } from "./services";
+    EDIT_CHAT_MESSAGE,
+    FETCH_CHAT_FLOW_REQUEST,
+    FETCH_CHAT_FLOW_SUCCESS,
+    FETCH_CHAT_FLOW_FAILURE
+} from "../../../../../../../The Projects/ChatBot/theChatBot/src/app/reducers/actionTypes";
+import { GetChatComponents, GetChatFlow } from "./services";
 
 const fetchChatComponentRequest = () => {
     return {
@@ -27,6 +30,7 @@ const fetchChatComponentFailure = (err: any) => {
 }
 
 export const fetchChatComponent = () => {
+
     return (dispatch: any) => {
         dispatch(fetchChatComponentRequest());
         return GetChatComponents().then(
@@ -40,6 +44,26 @@ export const fetchChatComponent = () => {
         );
     }
 };
+
+export const fetchChatFlow = () => {
+
+    const fetchChatFlowRequest = () => { return { type: FETCH_CHAT_FLOW_REQUEST } }
+    const fetchChatFlowSuccess = (data: any) => { return { type: FETCH_CHAT_FLOW_SUCCESS, payload: data } }
+    const fetchChatFlowFailure = (err: any) => { return { type: FETCH_CHAT_FLOW_FAILURE, payload: err } }
+
+    return (dispatch: any) => {
+        dispatch(fetchChatFlowRequest());
+        return GetChatFlow(3).then(
+            (result: any) => {
+                console.log(result);
+                dispatch(fetchChatFlowSuccess(result));
+            },
+            (error: any) => {
+                dispatch(fetchChatFlowFailure(error));
+            }
+        )
+    }
+}
 
 export const addToChatFlow = (chat: object) => {
     return {

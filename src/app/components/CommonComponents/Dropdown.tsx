@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux';
-import { editChatMessage, setTheInputValue } from '../../reducers/EditFlow/actions';
+import { editChatMessage } from '../../reducers/EditFlow/actions';
+// import { editChatMessage, setTheInputValue } from '../../reducers/EditFlow/actions';
 
 interface InsideOfOptions {
     _id: any,
     id: number,
     inputText: string,
     label: string,
-    message: string,
-    messageType: string,
+    defaultQuestion: string,
+    questionType: string,
     targetId: number
 }
 
@@ -23,8 +24,8 @@ interface Props {
 }
 
 const Dropdown: React.FC<Props> = (props: any) => {
-    console.log(props.targetId)
     const [defaultValue, setDefaultValue] = useState(props.target_Id === 0 ? '1' : props.target_Id);
+    console.log(props.target_ID);
     const handleChange = (e: any) => {
         console.log(e.target.value);
         console.log(props.target_ID);
@@ -43,12 +44,12 @@ const Dropdown: React.FC<Props> = (props: any) => {
                 data-allow-clear='true'
                 onChange={(e: any) => handleChange(e)}
                 value={props.target_ID === 0 ? '1' : props.target_ID}
-                defaultValue={props.target_ID}
+            // defaultValue={props.target_ID === 0 ? '1' : props.target_ID}
             >
                 <option value='1' disabled>Please select any one</option>
                 {
                     props.options.map((chat: any, index: number) => (
-                        <option key={index} value={chat._id}>{chat.message}</option>
+                        <option key={index} value={chat._id}>{chat.defaultQuestion}</option>
                     ))
                 }
                 {

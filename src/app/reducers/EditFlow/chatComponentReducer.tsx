@@ -2,7 +2,7 @@ import {
     FETCH_CHAT_COMPONENT_REQUEST,
     FETCH_CHAT_COMPONENT_SUCCESS,
     FETCH_CHAT_COMPONENT_FAILURE,
-} from "../actionTypes";
+} from "../../../../../../../The Projects/ChatBot/theChatBot/src/app/reducers/actionTypes";
 
 interface initialState {
     loading: boolean;
@@ -14,12 +14,12 @@ const initialState = {
     chatButtons: [],
     errorMessage: "",
 }
-interface action{
+interface action {
     type: string,
-    payload:any
+    payload: any
 }
 
-const ChatComponentReducer = (state = initialState, action:action) => {
+const ChatComponentReducer = (state = initialState, action: action) => {
     switch (action.type) {
         case FETCH_CHAT_COMPONENT_REQUEST:
             return {

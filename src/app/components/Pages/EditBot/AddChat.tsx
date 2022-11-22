@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux';
-import { GetChatComponents } from '../../../reducers/EditFlow/services';
-import ChatButton from '../ChatComponents/ChatButton';
 import { addToChatFlow, fetchChatComponent } from '../../../reducers/EditFlow/actions';
+import ChatButton from '../ChatComponents/ChatButton';
 
 export interface AddChatProps {
     chatButtons: [],
@@ -19,8 +18,9 @@ const AddChat: React.FC<AddChatProps> = ({ chatButtons, getChatButton, loading, 
     }, [])
 
     const generateId = () => {
+        const random = Math.round(Math.random() * 100000);
         const date = new Date();
-        return '' + date.getMilliseconds() + date.getHours() + date.getSeconds();
+        return '' + random + date.getMilliseconds() + date.getHours() + date.getSeconds();
     }
 
     return (
